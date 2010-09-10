@@ -1,0 +1,10 @@
+﻿<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %><!DOCTYPE html>
+<html lang="en" >
+<head>
+	<title>Silverlight</title>
+	<%--<script type="text/javascript" src="<%= Url.Content("~/Silverlight.js") %>"></script>--%>
+</head>
+<body>
+	<asp:ContentPlaceHolder ID="MainContent" runat="server" />
+</body>
+</html>

@@ -1,0 +1,17 @@
+.svn
+.svn/*
+_svn
+_svn/*
+Bin
+Bin/*
+bin
+bin/*
+obj
+obj/*
+_ReSharper.*
+*.cache
+*.resharper
+*.suo
+*.tmp
+*.user
+*.xap
