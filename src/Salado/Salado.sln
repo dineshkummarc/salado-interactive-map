@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Silverlight", "Silverlight\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{22492868-76B1-4A0B-8DBD-A2A387B637EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{A451A11A-52D4-42D5-911B-46EAF54B470F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{187F6A89-A0B7-4C31-9F9E-48ADAE6BDB6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +23,14 @@ Global
 		{22492868-76B1-4A0B-8DBD-A2A387B637EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22492868-76B1-4A0B-8DBD-A2A387B637EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22492868-76B1-4A0B-8DBD-A2A387B637EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A451A11A-52D4-42D5-911B-46EAF54B470F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A451A11A-52D4-42D5-911B-46EAF54B470F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A451A11A-52D4-42D5-911B-46EAF54B470F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A451A11A-52D4-42D5-911B-46EAF54B470F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{187F6A89-A0B7-4C31-9F9E-48ADAE6BDB6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{187F6A89-A0B7-4C31-9F9E-48ADAE6BDB6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{187F6A89-A0B7-4C31-9F9E-48ADAE6BDB6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{187F6A89-A0B7-4C31-9F9E-48ADAE6BDB6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
