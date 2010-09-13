@@ -22,6 +22,5 @@
 				</ItemsControl.ItemTemplate>
 			</ItemsControl>
 		</Canvas>
-		<TextBlock x:Name="DebugText" />
 	</Canvas>
 </UserControl>

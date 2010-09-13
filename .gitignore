@@ -10,6 +10,7 @@ obj
 obj/*
 _ReSharper.*
 *.cache
+*.Publish.xml
 *.resharper
 *.suo
 *.tmp

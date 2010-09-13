@@ -1,4 +1,7 @@
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SQLite;
+using System.Web;
 using System.Windows;
 using Core.Domain;
 using Domain;
@@ -9,12 +12,26 @@ namespace Infrastructure
 	{
 		IEnumerable<Establishment> IEstablishmentRepository.GetAll()
 		{
-			yield return new Establishment("Salado Wine Seller") { Location = new Point(30.954196, -97.532920) };
-			yield return new Establishment("Fletcher's Books") { Location = new Point(30.955571, -97.533714) };
-			yield return new Establishment("Brookshire Brothers Grocery") { Location = new Point(30.956128, -97.532061) };
-			yield return new Establishment("Gregory's") { Location = new Point(30.942554, -97.537104) };
-			yield return new Establishment("TBC International, Inc.") { Location = new Point(30.95126, -97.55396) };
-			yield return new Establishment("The Range") { Location = new Point(30.947681, -97.535430) };
+			using (var connection = new SQLiteConnection("Data Source=" + HttpContext.Current.Server.MapPath("~/Data/Salado.db3")))
+			{
+				connection.Open();
+				var command = new SQLiteCommand("select * from Establishments", connection) { CommandType = CommandType.Text };
+				var reader = command.ExecuteReader();
+
+				while (reader.Read())
+				{
+					string name = reader.GetString(reader.GetOrdinal("Name"));
+					var location = new Point
+						{
+							X = reader.GetDouble(reader.GetOrdinal("LocationX")),
+							Y = reader.GetDouble(reader.GetOrdinal("LocationY"))
+						};
+
+					yield return new Establishment(name, location);
+				}
+				
+				connection.Close();
+			}
 		}
 	}
 }

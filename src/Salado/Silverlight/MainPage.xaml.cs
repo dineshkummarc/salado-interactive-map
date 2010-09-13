@@ -48,12 +48,15 @@ namespace Silverlight
 			double targetX = e.GetPosition(this).X - _mouseClickPosition.X;
 			double targetY = e.GetPosition(this).Y - _mouseClickPosition.Y;
 
+			double minX = -(MapRoot.Width - ActualWidth);
+			double minY = -(MapRoot.Height - ActualHeight);
+
 			if (targetX > 0) MapRootTransform.X = 0;
-			else if (targetX < -(MapRoot.Width - ActualWidth)) MapRootTransform.X = -(MapRoot.Width - ActualWidth);
+			else if (targetX < minX) MapRootTransform.X = minX;
 			else MapRootTransform.X = targetX;
 
 			if (targetY > 0) MapRootTransform.Y = 0;
-			else if (targetY < -(MapRoot.Height - ActualHeight)) MapRootTransform.Y = -(MapRoot.Height - ActualHeight);
+			else if (targetY < minY) MapRootTransform.Y = minY;
 			else MapRootTransform.Y = targetY;
 
 			//DebugText.Text = string.Format("({0}, {1})", ActualWidth, Height);

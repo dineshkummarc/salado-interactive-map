@@ -9,9 +9,10 @@ namespace Domain
 		public string AddressLine2 { get; set; }
 		public Point Location { get; set; }
 
-		public Establishment(string name) : this()
+		public Establishment(string name, Point location) : this()
 		{
 			Name = name;
+			Location = location;
 		}
 
 		public Establishment() { }

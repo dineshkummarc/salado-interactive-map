@@ -22,7 +22,7 @@ namespace Silverlight.ViewModels
 		public string Name { get; private set; }
 		public double X { get; private set; }
 		public double Y { get; private set; }
-		public int Size { get { return 16; } }
+		public double Size { get { return 8; } }
 
 		public EstablishmentViewModel(Point mapSize, Establishment establishment, Point minGps, Point maxGps, double scale)
 		{
