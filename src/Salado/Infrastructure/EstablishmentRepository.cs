@@ -21,6 +21,7 @@ namespace Infrastructure
 				while (reader.Read())
 				{
 					string name = reader.GetString(reader.GetOrdinal("Name"));
+					//string category = reader.GetString(reader.GetOrdinal("Category"));
 					var location = new Point
 						{
 							X = reader.GetDouble(reader.GetOrdinal("LocationX")),

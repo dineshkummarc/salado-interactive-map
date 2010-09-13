@@ -70,7 +70,7 @@ namespace Silverlight
 			var mapMinimum = new Point(30.978317, -97.497348);
 			var mapMaximum = new Point(30.909870, -97.557070);
 
-			Establishments.DataContext = new MapViewModel(new Point(929, 695), establishments, mapMinimum, mapMaximum, 10000);
+			Establishments.DataContext = new MapViewModel(new Point(929, 695), establishments, mapMinimum, mapMaximum);
 		}
 	}
 }

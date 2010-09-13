@@ -11,7 +11,7 @@
 						<Canvas>
 							<Ellipse Height="{Binding Size}" Width="{Binding Size}" Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}">
 								<Ellipse.Fill>
-									<SolidColorBrush Color="Pink" />
+									<SolidColorBrush Color="{Binding Color}" />
 								</Ellipse.Fill>
 								<ToolTipService.ToolTip>
 									<ToolTip Content="{Binding Name}" />

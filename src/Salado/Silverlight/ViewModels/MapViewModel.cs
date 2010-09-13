@@ -10,10 +10,10 @@ namespace Silverlight.ViewModels
 		public IEnumerable<EstablishmentViewModel> Establishments { get; set; }
 		public Point MapSize { get; private set; }
 
-		public MapViewModel(Point mapSize, IEnumerable<Establishment> establishments, Point minGps, Point maxGps, double scale)
+		public MapViewModel(Point mapSize, IEnumerable<Establishment> establishments, Point minGps, Point maxGps)
 		{
 			MapSize = mapSize;
-			Establishments = establishments.Select(establishment => new EstablishmentViewModel(mapSize, establishment, minGps, maxGps, scale));
+			Establishments = establishments.Select(establishment => new EstablishmentViewModel(mapSize, establishment, minGps, maxGps));
 		}
 	}
 
@@ -23,13 +23,34 @@ namespace Silverlight.ViewModels
 		public double X { get; private set; }
 		public double Y { get; private set; }
 		public double Size { get { return 8; } }
+		public string Category { get; private set; }
 
-		public EstablishmentViewModel(Point mapSize, Establishment establishment, Point minGps, Point maxGps, double scale)
+		public string Color { get { return GetColorForCategory(Category); } }
+
+		public EstablishmentViewModel(Point mapSize, Establishment establishment, Point minGps, Point maxGps)
 		{
 			Name = establishment.Name;
 
 			X = ((establishment.Location.X - minGps.X) / (maxGps.X - minGps.X)) * mapSize.X - Size / 2;
 			Y = ((establishment.Location.Y - minGps.Y) / (maxGps.Y - minGps.Y)) * mapSize.Y - Size / 2;
+
+			Category = establishment.Category;
+		}
+
+		private static string GetColorForCategory(string category)
+		{
+			return "#ff00ff";
+
+			IDictionary<string, string> categoryColors = new Dictionary<string, string>
+				{
+					{ "Restaurant", "#ff00ff" }
+				};
+
+			string color;
+			bool success = categoryColors.TryGetValue(category, out color);
+			if (!success) color = "#ffffff";
+
+			return color;
 		}
 	}
 }

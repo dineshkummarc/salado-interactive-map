@@ -8,6 +8,7 @@ namespace Domain
 		public string AddressLine1 { get; set; }
 		public string AddressLine2 { get; set; }
 		public Point Location { get; set; }
+		public string Category { get; set; }
 
 		public Establishment(string name, Point location) : this()
 		{
