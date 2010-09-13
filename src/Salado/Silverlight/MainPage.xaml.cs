@@ -45,8 +45,18 @@ namespace Silverlight
 		{
 			if (!_mouseCaptured) return;
 
-			MapRootTransform.X = e.GetPosition(this).X - _mouseClickPosition.X;
-			MapRootTransform.Y = e.GetPosition(this).Y - _mouseClickPosition.Y;
+			double targetX = e.GetPosition(this).X - _mouseClickPosition.X;
+			double targetY = e.GetPosition(this).Y - _mouseClickPosition.Y;
+
+			if (targetX > 0) MapRootTransform.X = 0;
+			else if (targetX < -(MapRoot.Width - ActualWidth)) MapRootTransform.X = -(MapRoot.Width - ActualWidth);
+			else MapRootTransform.X = targetX;
+
+			if (targetY > 0) MapRootTransform.Y = 0;
+			else if (targetY < -(MapRoot.Height - ActualHeight)) MapRootTransform.Y = -(MapRoot.Height - ActualHeight);
+			else MapRootTransform.Y = targetY;
+
+			//DebugText.Text = string.Format("({0}, {1})", ActualWidth, Height);
 		}
 
 		private void OnReadCompleted(object sender, OpenReadCompletedEventArgs e)
