@@ -1,22 +1,24 @@
 ﻿<UserControl x:Class="Silverlight.MainPage" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="600">
 	<Canvas x:Name="LayoutRoot">
-		<Image x:Name="Map" Source="Assets/Map.png" Stretch="UniformToFill" Canvas.Left="0" Canvas.Top="-150"/>
+		<Canvas x:Name="MapRoot">
+			<Image x:Name="Map" Source="Assets/Salado.png" Stretch="UniformToFill" Canvas.Left="0" Canvas.Top="0"/>
+			<ItemsControl x:Name="Establishments" ItemsSource="{Binding Establishments}">
+				<ItemsControl.ItemTemplate>
+					<DataTemplate>
+						<Canvas>
+							<Ellipse Height="8" Width="8" Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}">
+								<Ellipse.Fill>
+									<SolidColorBrush Color="Pink" />
+								</Ellipse.Fill>
+								<ToolTipService.ToolTip>
+									<ToolTip Content="{Binding Name}" />
+								</ToolTipService.ToolTip>
+							</Ellipse>
+						</Canvas>
+					</DataTemplate>
+				</ItemsControl.ItemTemplate>
+			</ItemsControl>
+		</Canvas>
 		<TextBlock x:Name="Coordinates" />
-		<ItemsControl x:Name="Establishments" ItemsSource="{Binding Establishments}">
-			<ItemsControl.ItemTemplate>
-				<DataTemplate>
-					<Canvas>
-						<Ellipse Height="8" Width="8" Canvas.Left="{Binding X}" Canvas.Top="{Binding Y}">
-							<Ellipse.Fill>
-								<SolidColorBrush Color="Pink" />
-							</Ellipse.Fill>
-							<ToolTipService.ToolTip>
-								<ToolTip Content="{Binding Name}" />
-							</ToolTipService.ToolTip>
-						</Ellipse>
-					</Canvas>
-				</DataTemplate>
-			</ItemsControl.ItemTemplate>
-		</ItemsControl>
 	</Canvas>
 </UserControl>

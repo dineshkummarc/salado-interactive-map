@@ -26,18 +26,18 @@ namespace Silverlight
 			proxy.OpenReadAsync(new Uri(HtmlPage.Document.DocumentUri + "/Map/Shops"));
 		}
 
-		void LayoutRoot_KeyDown(object sender, KeyEventArgs e)
+		private void LayoutRoot_KeyDown(object sender, KeyEventArgs e)
 		{
-			int moveScale = 2;
-			double zoomScale = 0.01;
+			const int moveScale = 2;
+			const double zoomScale = 0.01;
 
-			double currentX = Convert.ToInt32(Map.GetValue(Canvas.LeftProperty));
-			if (e.Key == Key.Left) Map.SetValue(Canvas.LeftProperty, currentX + moveScale);
-			if (e.Key == Key.Right) Map.SetValue(Canvas.LeftProperty, currentX - moveScale);
+			double currentX = Convert.ToInt32(MapRoot.GetValue(Canvas.LeftProperty));
+			if (e.Key == Key.Left) MapRoot.SetValue(Canvas.LeftProperty, currentX - moveScale);
+			if (e.Key == Key.Right) MapRoot.SetValue(Canvas.LeftProperty, currentX + moveScale);
 
-			double currentY = Convert.ToInt32(Map.GetValue(Canvas.TopProperty));
-			if (e.Key == Key.Up) Map.SetValue(Canvas.TopProperty, currentY + moveScale);
-			if (e.Key == Key.Down) Map.SetValue(Canvas.TopProperty, currentY - moveScale);
+			double currentY = Convert.ToInt32(MapRoot.GetValue(Canvas.TopProperty));
+			if (e.Key == Key.Up) MapRoot.SetValue(Canvas.TopProperty, currentY - moveScale);
+			if (e.Key == Key.Down) MapRoot.SetValue(Canvas.TopProperty, currentY + moveScale);
 
 			if (e.Key == Key.Subtract) _currentScale -= zoomScale;
 			if (e.Key == Key.Add) _currentScale += zoomScale;
@@ -48,11 +48,15 @@ namespace Silverlight
 			Coordinates.Text = string.Format("({0}, {1}) : {2}", currentX, currentY, _currentScale);
 		}
 
-		public void OnReadCompleted(object sender, OpenReadCompletedEventArgs e)
+		private void OnReadCompleted(object sender, OpenReadCompletedEventArgs e)
 		{
 			var serializer = new DataContractJsonSerializer(typeof(IEnumerable<Establishment>));
-			var establishments = new List<Establishment>((IEnumerable<Establishment>)serializer.ReadObject(e.Result));
-			Establishments.DataContext = new MapViewModel(establishments, new Point(30.95, -97.53), 10000);
+			var establishments = (IEnumerable<Establishment>)serializer.ReadObject(e.Result);
+
+			var mapMinimum = new Point(30.978317, -97.497348);
+			var mapMaximum = new Point(30.909870, -97.557070);
+
+			Establishments.DataContext = new MapViewModel(new Point(929, 695), establishments, mapMinimum, mapMaximum, 10000);
 		}
 	}
 }

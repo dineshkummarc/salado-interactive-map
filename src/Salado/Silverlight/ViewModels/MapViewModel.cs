@@ -8,10 +8,12 @@ namespace Silverlight.ViewModels
 	public class MapViewModel
 	{
 		public IEnumerable<EstablishmentViewModel> Establishments { get; set; }
+		public Point MapSize { get; private set; }
 
-		public MapViewModel(IEnumerable<Establishment> establishments, Point zero, double scale)
+		public MapViewModel(Point mapSize, IEnumerable<Establishment> establishments, Point minGps, Point maxGps, double scale)
 		{
-			Establishments = establishments.Select(establishment => new EstablishmentViewModel(establishment, zero, scale));
+			MapSize = mapSize;
+			Establishments = establishments.Select(establishment => new EstablishmentViewModel(mapSize, establishment, minGps, maxGps, scale));
 		}
 	}
 
@@ -21,11 +23,12 @@ namespace Silverlight.ViewModels
 		public double X { get; private set; }
 		public double Y { get; private set; }
 
-		public EstablishmentViewModel(Establishment establishment, Point zero, double scale)
+		public EstablishmentViewModel(Point mapSize, Establishment establishment, Point minGps, Point maxGps, double scale)
 		{
 			Name = establishment.Name;
-			X = -(establishment.Location.X - zero.X) * scale + 400;
-			Y = -(establishment.Location.Y - zero.Y) * scale + 300;
+
+			X = ((establishment.Location.X - minGps.X) / (maxGps.X - minGps.X)) * mapSize.X - 4;
+			Y = ((establishment.Location.Y - minGps.Y) / (maxGps.Y - minGps.Y)) * mapSize.Y - 4;
 		}
 	}
 }
