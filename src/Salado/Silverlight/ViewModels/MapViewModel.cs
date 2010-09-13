@@ -22,13 +22,14 @@ namespace Silverlight.ViewModels
 		public string Name { get; private set; }
 		public double X { get; private set; }
 		public double Y { get; private set; }
+		public int Size { get { return 16; } }
 
 		public EstablishmentViewModel(Point mapSize, Establishment establishment, Point minGps, Point maxGps, double scale)
 		{
 			Name = establishment.Name;
 
-			X = ((establishment.Location.X - minGps.X) / (maxGps.X - minGps.X)) * mapSize.X - 4;
-			Y = ((establishment.Location.Y - minGps.Y) / (maxGps.Y - minGps.Y)) * mapSize.Y - 4;
+			X = ((establishment.Location.X - minGps.X) / (maxGps.X - minGps.X)) * mapSize.X - Size / 2;
+			Y = ((establishment.Location.Y - minGps.Y) / (maxGps.Y - minGps.Y)) * mapSize.Y - Size / 2;
 		}
 	}
 }
