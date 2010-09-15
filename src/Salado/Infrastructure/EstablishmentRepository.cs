@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SQLite;
 using System.Web;
-using System.Windows;
 using Core.Domain;
 using Domain;
 
@@ -21,14 +20,14 @@ namespace Infrastructure
 				while (reader.Read())
 				{
 					string name = reader.GetString(reader.GetOrdinal("Name"));
-					//string category = reader.GetString(reader.GetOrdinal("Category"));
-					var location = new Point
-						{
-							X = reader.GetDouble(reader.GetOrdinal("LocationX")),
-							Y = reader.GetDouble(reader.GetOrdinal("LocationY"))
-						};
+					string category = reader.GetValue(reader.GetOrdinal("Category")).ToString();
 
-					yield return new Establishment(name, location);
+					yield return new Establishment(name)
+						{
+							Category = category,
+							Latitude = reader.GetDouble(reader.GetOrdinal("LocationX")),
+							Longitude = reader.GetDouble(reader.GetOrdinal("LocationY"))
+						};
 				}
 				
 				connection.Close();

@@ -31,8 +31,8 @@ namespace Silverlight.ViewModels
 		{
 			Name = establishment.Name;
 
-			X = ((establishment.Location.X - minGps.X) / (maxGps.X - minGps.X)) * mapSize.X - Size / 2;
-			Y = ((establishment.Location.Y - minGps.Y) / (maxGps.Y - minGps.Y)) * mapSize.Y - Size / 2;
+			X = ((establishment.Latitude - minGps.X) / (maxGps.X - minGps.X)) * mapSize.X - Size / 2;
+			Y = ((establishment.Longitude - minGps.Y) / (maxGps.Y - minGps.Y)) * mapSize.Y - Size / 2;
 
 			Category = establishment.Category;
 		}
